@@ -5,8 +5,9 @@ require "../config/config.php";
 
 $error = '';
 
-if(!isset($_SESSION['username'])){
+if(isset($_SESSION['username'])){
   header("Location: ".APPURL."");
+  exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -55,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="container">
     <div class="row justify-content-middle" style="margin-left: 397px;">
       <div class="col-md-6 mt-5">
-        <form action="../index.php" method="POST" class="appointment-form" style="margin-top: -568px;">
+        <form action="login.php" method="POST" class="appointment-form" style="margin-top: -568px;">
           <h3 class="mb-3">Login</h3>
           <div class="row">
             <div class="col-md-12">
