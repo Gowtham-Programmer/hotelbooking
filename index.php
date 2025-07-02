@@ -5,10 +5,18 @@ require "includes/header.php";
 ?>
 
 <?php
+    // echo "hi";
+    $hotels_sql = "SELECT * FROM hotels WHERE status = 1";
+    $hotels_result = mysqli_query($conn, $hotels_sql);
 
-   $hotels = "SELECT * FROM hotels WHERE status = 1";
-   $hotels = mysqli_stmt_execute();
-   echo json_encode($hotels);
+    $hotels = [];
+    if ($hotels_result && mysqli_num_rows($hotels_result) > 0) {
+        while ($row = mysqli_fetch_assoc($hotels_result)) {
+            $hotels[] = $row;
+        }
+    }
+
+    // echo json_encode($hotels);
 ?>
 
     <div class="hero-wrap js-fullheight" style="background-image: url('images/image_2.jpg');" data-stellar-background-ratio="0.5">
@@ -35,7 +43,7 @@ require "includes/header.php";
                 <h3 class="heading">Sheraton</h3>
                 <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
                 <p>Location: Cairo.</p>
-                <p><a href="rooms.html" class="btn btn-primary">View rooms</a></p>
+                <p><a href="rooms.html" class="btn btn-primary">View rooms.</a></p>
               </div>
             </div>      
           </div>
@@ -47,6 +55,8 @@ require "includes/header.php";
         </div>
     	</div>
     </section>
+
+	
 
     <section class="ftco-section bg-light">
 			<div class="container-fluid px-md-0">
